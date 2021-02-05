@@ -25,7 +25,9 @@ ___
 Some useful shortcuts/tools/settings:
 - Tool option dialogue: Notice that sometimes the dialogue box for a tool won’t show up, or only after you apply the tool? You can fix this by pressing F9 to immediately see the mathematical options (for example if you want to rotate by 90 degrees about the X axis, you can type these values in the dialogue box).
 You can make your own shortcuts by right clicking on the operation in the menu, and clicking “assign shortcut”
-- Tip: if you rename your object, your mesh will often still have the old mesh. (The  object is indicated by the orange upside down triangle in the hierarchy, and the mesh (indicated by the green upside down triangle). To rename all meshes to their object names, you can use the following Python script in the console:
-# set the name of all meshes to be the same as the object 
+- Tip: if you rename your object, your mesh will often still have the old mesh. (The  object is indicated by the orange upside down triangle in the hierarchy, and the mesh (indicated by the green upside down triangle). To set the name of all meshes to be the same as the object, you can use the following Python script in the console:
+
 for name, obj in bpy.data.objects.items(): obj.data.name = name
+
+
 
