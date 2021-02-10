@@ -32,12 +32,17 @@ ___
 
  *for name, obj in bpy.data.objects.items(): obj.data.name = name*
 
-The smoothing sculpting tool (in Sculpt mode) can be really useful if you want to locally smoothe an area (for example if there is jagged geometry). There is even an option to mirror the effects, so if your model is symmetrical about the X axis for example, you can select this:     and then all of your smoothing that you perform on one side of the model will also be performed on the other side.
+
 
 ___
-## Mesh Cleaning
-
 ### Full Remeshing
+Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over.
+
+
+
+
+### Smoothing Sculpting Tool  
+The smoothing sculpting tool (in Sculpt mode) can be really useful if you want to locally smoothe an area (for example if there is jagged geometry). There is even an option to mirror the effects, so if your model is symmetrical about the X axis for example, you can select this:     and then all of your smoothing that you perform on one side of the model will also be performed on the other side.
 
 ### Fixing Non-Manifold Meshes
 
@@ -46,4 +51,5 @@ ___
 ### Checking for Sharp Triangles and Fixing Them
 
 ### 
+
 
