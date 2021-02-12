@@ -37,12 +37,18 @@ ___
 
 ___
 ### Full Remeshing
-Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the voxel remesher to work well.
+Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the **voxel remesher** to work well.
+
+**Voxel Remesher**
+Press F3 to bring up the search bar, then type in "voxel remesh". The voxel remesher will create a new mesh based on the volume of your old mesh, ensuring even vertex spacing (which is really useful for FEA analyses).
+
+**Voxel Remesher via Remesh Modifier**
+For a bit more control over the voxel modifier, you can apply it via the **remesh modifier**. This can be found under the modifier tab when the object is highlighted in the object hierarchy, under the 
 
 
-For a bit more control over the voxel modifier, you can apply it via the **remesh modifier**. This can be found under the modifier tab when the object is highlighted in the object hierarchy. Note that you need to "apply" any modifiers before exporting this mesh. Applying the modifier means the inital mesh is destroyed and the modifier cannot be adjusted anymore, so make sure the mesh is how you want it before pressing "apply".
+Note that you need to "apply" any modifiers before exporting this mesh. Applying the modifier means the initial mesh is destroyed and the modifier cannot be adjusted anymore, so make sure the mesh is how you want it before pressing "apply". Before applying the modifier, you can only see the changes in object mode (the mesh in edit mode is only changed once you hit apply). 
 
-The voxel 
+The voxel remesher gives the option of specifying the voxel size, which you ca 
 
 There are also other options in the remesh modifer (block, smooth, and sharp). Octree depth = 12 sometimes works well but in general the voxel remesh produces much better models. 
 
@@ -62,5 +68,4 @@ ___
 
 ___
 ### 
-
 
