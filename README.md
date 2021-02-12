@@ -23,6 +23,7 @@ ___
 - For more hotkeys see this [list](https://techylawyer.com/blog/the-blender-2-8-keyboard-shortcuts-cheat-sheet-for-windows/) 
   - for Blender 2.8 but many hotkeys are still the same
 - W to change selection mode (from box select to circle select to lasso select)
+- F3 will pull up the search menu, so you can type in the same of any tool to search for it
 
 
 ### Some useful shortcuts/tools/settings:
@@ -36,20 +37,30 @@ ___
 
 ___
 ### Full Remeshing
-Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over.
+Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the voxel remesher to work well.
 
 
+For a bit more control over the voxel modifier, you can apply it via the **remesh modifier**. This can be found under the modifier tab when the object is highlighted in the object hierarchy. Note that you need to "apply" any modifiers before exporting this mesh. Applying the modifier means the inital mesh is destroyed and the modifier cannot be adjusted anymore, so make sure the mesh is how you want it before pressing "apply".
+
+The voxel 
+
+There are also other options in the remesh modifer (block, smooth, and sharp). Octree depth = 12 sometimes works well but in general the voxel remesh produces much better models. 
 
 
+___
 ### Smoothing Sculpting Tool  
 The smoothing sculpting tool (in Sculpt mode) can be really useful if you want to locally smoothe an area (for example if there is jagged geometry). There is even an option to mirror the effects, so if your model is symmetrical about the X axis for example, you can select this:     and then all of your smoothing that you perform on one side of the model will also be performed on the other side.
 
+___
 ### Fixing Non-Manifold Meshes
 
+___
 ### Selective Smoothing of Vertices
 
+___
 ### Checking for Sharp Triangles and Fixing Them
 
+___
 ### 
 
 
