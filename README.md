@@ -46,7 +46,7 @@ Press F3 to bring up the search bar, then type in "voxel remesh". The voxel reme
 For a bit more control over the voxel modifier, you can apply it via the **remesh modifier**. This can be found under the modifier tab when the object is highlighted in the object hierarchy, under the 
 
 
-Note that you need to "apply" any modifiers before exporting this mesh. Applying the modifier means the initial mesh is destroyed and the modifier cannot be adjusted anymore, so make sure the mesh is how you want it before pressing "apply". Before applying the modifier, you can only see the changes in object mode (the mesh in edit mode is only changed once you hit apply). 
+Note that you need to "apply" any modifiers before exporting this mesh. Applying the modifier means the initial mesh is destroyed and the modifier cannot be adjusted anymore, so make sure the mesh is how you want it before pressing "apply" (under the little downward pointing arrow next to the camera symbold). Before applying the modifier, you can only see the changes in object mode (the mesh in edit mode is only changed once you hit apply). 
 
 The voxel remesher gives the option of specifying the voxel size, which you ca 
 
