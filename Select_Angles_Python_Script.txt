@@ -1,6 +1,6 @@
 #written by Eva Herbst and Niccolo Fioritti, 2021
 
-#in Object mode, select object of interest. Paste this script into the Python consolve. Triangles with angles < 20 degrees and > 150 will be selected in Edit mode after script runs. 
+#In Object mode, select object of interest. Paste this script into the Python consolve. Triangles with angles < 20 degrees and > 150 will be selected in Edit mode after script runs. 
 
 
 import bpy
