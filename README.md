@@ -38,7 +38,7 @@ ___
  *for name, obj in bpy.data.objects.items(): obj.data.name = name*
 
 ### Before starting:
-*Make sure you enable the statistics module. Click on this symbol:![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/statistics_option.JPG)
+*Make sure you enable the statistics module. Click on this symbol: ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/statistics_option.JPG)
 and then check Statistics.
 This will let you know how many elements are selected (which is very useful for your mesh checks).
 ___
