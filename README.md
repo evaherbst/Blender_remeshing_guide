@@ -24,6 +24,8 @@ ___
 - For more hotkeys see this [list](https://techylawyer.com/blog/the-blender-2-8-keyboard-shortcuts-cheat-sheet-for-windows/) 
   - for Blender 2.8 but many hotkeys are still the same
 - W to change selection mode (from box select to circle select to lasso select)
+- In edit mode, it can be really useful to hide specific faces so you can look at internal geometry etc. To do so, select them with the lasso tool and then press H. Use ALT + H to unhide all.
+- Hold down SHIFT to select multiple elements
 - F3 will pull up the search menu, so you can type in the same of any tool to search for it
 
 
@@ -33,8 +35,6 @@ ___
 - Tip: if you rename your object, your mesh will often still have the old mesh. (The  object is indicated by the orange upside down triangle in the hierarchy, and the mesh (indicated by the green upside down triangle). To set the name of all meshes to be the same as the object, go to scripting mode and paste the following Python script in the console:
 
  *for name, obj in bpy.data.objects.items(): obj.data.name = name*
-
-
 
 ___
 ### Full Remeshing
@@ -60,9 +60,15 @@ ___
 ### Fixing Non-Manifold Meshes
 You can check for non-manifold elements in Edit mode under Select > Select by Trait > Non-manifold. A little window will pop up so you can check the different types of non-manifold issues. Sometimes it helps to move edges or vertices in the problematic areas around, so see if maybe the issue is duplicate vertices or edges in the same spot. 
 
-- To solve duplicate vertices or edges, you can use the "merge by distance" tool (Mesh > Clean up > Merge by distance and adjust the values so you only merge those vertices.
+- To solve **duplicate vertices**, you can use the "merge by distance" tool (Mesh > Clean up > **Merge by Distance** and adjust the values so you only merge those vertices.
 
-- If you have any holes in your mesh, you can try the automatic cleanup tool under Mesh > Clean up > Fill holes. You can also 
+- You can also remove **duplicate vertices or edges or faces** that are floating with the Mesh > Clean up > **Delete Loose** option. 
+
+- To **remove zero area faces and zero length edges**, use Mesh > Clean up > **Degenerate Dissolve**. 
+
+- If you have any **holes** in your mesh, you can try the automatic cleanup tool under Mesh > Clean up > Fill holes. You can also manually select the surrounding vertices and then fill the gap by pressing F. You can also create a new edge between two selected vertices in the same way. 
+
+- If you have floating 
 
 
 
@@ -70,8 +76,9 @@ ___
 ### Checking for Sharp Triangles and Fixing Them
 *Thank you to Niccolo Fioritti for helping write the angle selector code*
 
+First, make sure your mesh is a tri mesh instead of a quad mesh. To triangulate faces, in Edit mode press A with the select tool active to select all faces, then go to Face > Triangulate Faces
+
 To select angles < 20 or >150, go into object mode, select your object, and then run [this script]() in the Python console. Then go into edit mode to view the angles. You can then manually move vertices by clicking on them and dragging them around with the move tool. You can also select the problematic vertex and some surrounding vertices and apply the selective vertex smoothing tool (see below).
 ___
-### ___
 ### Selective Smoothing of Vertices
 
