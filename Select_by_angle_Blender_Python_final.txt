@@ -1,0 +1,43 @@
+#written by Eva Herbst and Niccolo Fioritti, 2021
+
+#in Object mode, select object of interest. Paste this script into the Python consolve. Triangles with angles < 20 degrees and > 150 will be selected in Edit mode after script runs. 
+
+
+import bpy
+import math
+
+obj = bpy.context.object
+
+def angle_between_edges(obj,poly,e1,e2):
+    common_vert = set(e1).intersection(set(e2))
+    if common_vert==set():
+        return None
+    v0 = list(common_vert)[0]
+    v1 = list(set(e1).difference(common_vert))[0]
+    v2 = list(set(e2).difference(common_vert))[0]
+    vec1 = obj.data.vertices[v1].co -obj.data.vertices[v0].co 
+    vec2 = obj.data.vertices[v2].co -obj.data.vertices[v0].co 
+    angle = vec1.angle(vec2)
+    angle = math.degrees(angle)
+    return angle
+	
+def selectPolygon(angle,polyIndex):
+    if(angle is not None):
+        if(angle<20 or angle >150):
+            obj = bpy.context.active_object
+            obj.data.polygons[polyIndex].select = True
+
+            
+# 
+# 
+        
+
+
+for p_i,poly in enumerate(obj.data.polygons):
+    for i,e1 in enumerate(poly.edge_keys):
+        for j,e2 in enumerate(poly.edge_keys):
+            if i<j:
+                angle = angle_between_edges(obj,poly,e1,e2)
+                selectPolygon(angle,p_i)
+                if angle==None:
+                    continue
