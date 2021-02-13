@@ -37,6 +37,9 @@ ___
 
  *for name, obj in bpy.data.objects.items(): obj.data.name = name*
 
+### Before starting:
+*Make sure you enable the statistics module. Click on this symbol: [**insert image statistics**] and then check Statistics.
+This will let you know how many elements are selected (which is very useful for your mesh checks).
 ___
 ### Full Remeshing
 Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the **voxel remesher** to work well.
@@ -59,7 +62,7 @@ The smoothing sculpting tool (in Sculpt mode) can be really useful if you want t
 
 ___
 ### Fixing Non-Manifold Meshes
-You can check for non-manifold elements in Edit mode under Select > Select by Trait > Non-manifold. A little window will pop up so you can check the different types of non-manifold issues. Sometimes it helps to move edges or vertices in the problematic areas around, so see if maybe the issue is duplicate vertices or edges in the same spot. 
+You can **check for non-manifold elements** in Edit mode under Select > Select by Trait > Non-manifold. A little window will pop up so you can check the different types of non-manifold issues. Sometimes it helps to move edges or vertices in the problematic areas around, so see if maybe the issue is duplicate vertices or edges in the same spot. This is where the Statistics view option comes in handy - you can see how many elements are non-manifold. When you are done cleaning your mesh should have 0 non-manifold elements.
 
 - To solve **duplicate vertices**, you can use the "merge by distance" tool (Mesh > Clean up > **Merge by Distance** and adjust the values so you only merge those vertices.
 
@@ -67,11 +70,36 @@ You can check for non-manifold elements in Edit mode under Select > Select by Tr
 
 - To **remove zero area faces and zero length edges**, use Mesh > Clean up > **Degenerate Dissolve**. 
 
-- If you have any **holes** in your mesh, you can try the automatic cleanup tool under Mesh > Clean up > Fill holes. You can also manually select the surrounding vertices and then fill the gap by pressing F. You can also create a new edge between two selected vertices in the same way. 
+- If you have any **holes** in your mesh, you can try the automatic cleanup tool under Mesh > Clean up > Fill holes. You can also manually select the surrounding vertices and then fill the gap by pressing F. If you have a big hole bordered by many edges, see section **Manually creating New Faces** below. You can also create a new edge between two selected vertices in the same way. 
+ - Depending on the geometry of your gap, you might also want to fill it using "vertex snapping". Select one vertex and drag it over to the vertex you want to connect it to. Select this option [**insert image of snapping tool here**] and then in the dropdown menu select what you want it to snap to, in this case vertices. Make sure to merge the vertices after snapping them using the Merge by Distance Tool. 
 
 - If you have **floating bits** outside of your model (maybe from your segmentation) then you can remove these by clicking on a vertex or face in the main model (the part you want to keep), then Select > Select Linked (or use CNTL L), and then Select > Invert (or use CNTRL I). This will select only the floating elements that are not connected to your main model. You can delete them (Delete > **Vertices**).
 
+___
+### Selective Smoothing of Vertices
 
+The vertex smoothing tool makes the vertices and angles more evenly spaced. Select the vertices of interest and then Vertex > Smooth Vertices. You can adjust the level of smoothing. You can also select the entire model (press A) and then smooth all vertices. If you do the latter, you should check to make sure no fine structures are lost.
+
+___
+### Creating new faces and edges to fill large holes
+
+There may be cases where you deleted some vertices (for example if there was a spiky geometry) and have a big hole that you need to fill, rather than a single triangle. Instead of selecting all of the edges in the perimeter one by one to fill the gap, you can select a single edge and then go to Select > Select Loops > Edge Loops. This will select the perimeter. Then press F to fill the gap. You now will have a big, non triangular gap:
+[**insert filled hole image**]
+
+You now have two options - 1) you can Triangulate Faces (Face > Triangulate or CNTRL T) or 2) you can manually position edges. 
+
+With option 1), you will likely get sharp triangles:
+[**insert image with sharp triangles**]
+
+You can fix these sometwhat with the "smooth vertices" tool (see above), but the number of triangles is set, so we still don't get super even triangles:
+[**insert imas with smoothed vertices**
+
+It is up to you to decide if these are good enough for your model - often they will be, but sometimes you might want to manually create the faces. To do this, fill the hole as above, then use the knife tool to draw edges (enabling the vertex snap option helps with this). Here you can see how I started to draw in the new edges with the knife tool:
+
+[**insert image manual triangle drawing**]
+
+
+*Sometimes the knife tool might not work well - I think this is when the faces are not planar, so first go to Mesh > Clean up > Make Planar Faces. 
 
 ___
 ### Checking for Sharp Triangles and Fixing Them
@@ -79,15 +107,17 @@ ___
 
 First, make sure your mesh is a tri mesh instead of a quad mesh. To triangulate faces, in Edit mode press A with the select tool active to select all faces, then go to Face > Triangulate Faces
 
-To select angles < 20 or >150, go into object mode, select your object, and then run [this script](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/Select_Angles_Python_Script.txt) by copying and pasting it into the Python console (in Scripting mode). Then go into edit mode to view the angles. You can then manually move vertices by clicking on them and dragging them around with the move tool. You can also select the problematic vertex and some surrounding vertices and apply the selective vertex smoothing tool (see below). You can also use the vertex smoothing tool on the whole model but ensure that no details are lost. The vertex smoothing tool makes the vertices and angles more evenly spaced. 
+To select angles < 20 or >150, go into object mode, select your object, and then run [this script](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/Select_Angles_Python_Script.txt) by copying and pasting it into the Python console (in Scripting mode). Then go into edit mode to view the angles. You can then manually move vertices by clicking on them and dragging them around with the move tool. You can also select the problematic vertex and some surrounding vertices and apply the selective vertex smoothing tool (see below). You can also use the vertex smoothing tool on the whole model but ensure that no details are lost (see below).
 
-If there are many angles you want to fix, then 
+I usually go through the angles one by one to fix them (either with selective vertex smoothing or manually). 
+If you decide to fix the angles one by one (instead of using the vertex smoothing on the whole model), then it helps to save the results of the script using **vertex groups**. Vertex groups essentially allow you to save a group of selected vertices (so in this case, once you've fixed on angle, you don't need to rerun the script to select the remaining angles, but can just select the vertex group. The angles you fixed will still be part of the vertex group but it should be easy to see which ones are still problematic (i.e. very sharp triangles). I usually use the vertex group, fix several angles, and after a while re-run the script, and save the selection again as a vertex group to work through the remaining issues.
 
+To create a vertex group, in Edit mode (with the vertices selected by the angle script), go to the vertex properties tab and press the plus icon:
+[**insert vertex group image here**]
+
+Type in the name for the group (for example "sharp angles"). Then press "assign" to assign the problematic vertices to the vertex group.
+If you want to update the vertex group (after cleaning some sharp angles), in the vertex group go to select, then remove. Now your vertex group is empty and you can rerun the script and assign the remaining sharp angle vertices to that group. 
+
+Keep fixing vertices until the script results in 0 selected vertices (this means no angles are > 150 or < 20 degrees). As mentioned above, make sure the Statistics view is enabled so you can see the number of vertices selected by the script.
 ___
-### Selective Smoothing of Vertices
-
-You can of course also smooth your entire model 
-
-
-___
-### Manually creating new faces
+### After all your mesh adjustments, run the non-manfold checks again to make sure no errors were introduced during your mesh cleaning.
