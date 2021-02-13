@@ -115,7 +115,7 @@ I usually go through the angles one by one to fix them (either with selective ve
 If you decide to fix the angles one by one (instead of using the vertex smoothing on the whole model), then it helps to save the results of the script using **vertex groups**. Vertex groups essentially allow you to save a group of selected vertices (so in this case, once you've fixed on angle, you don't need to rerun the script to select the remaining angles, but can just select the vertex group. The angles you fixed will still be part of the vertex group but it should be easy to see which ones are still problematic (i.e. very sharp triangles). I usually use the vertex group, fix several angles, and after a while re-run the script, and save the selection again as a vertex group to work through the remaining issues.
 
 To create a vertex group, in Edit mode (with the vertices selected by the angle script), go to the vertex properties tab and press the plus icon:
-![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/vertex_groups.JPG)
+![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/vertex_groups_v2.JPG)
 
 Type in the name for the group (for example "sharp angles"). Then press "assign" to assign the problematic vertices to the vertex group.
 If you want to update the vertex group (after cleaning some sharp angles), in the vertex group go to select, then remove. Now your vertex group is empty and you can rerun the script and assign the remaining sharp angle vertices to that group. 
