@@ -2,7 +2,7 @@
 
 
 For FEA (finite elemenet analysis) and also other goals such as animating or 3D printing, it is important to have clean meshes.
-This guide offers step by step instructions to clean your meshes in the freeware Blender, which can be downloaded [here](https://www.blender.org/)
+This guide offers step by step instructions to clean your meshes in the freeware Blender, which can be downloaded [here](https://www.blender.org/).
 
 *This guide was created for Blender 2.9. Other versions might have slightly different settings*
 
@@ -38,7 +38,8 @@ ___
  *for name, obj in bpy.data.objects.items(): obj.data.name = name*
 
 ### Before starting:
-*Make sure you enable the statistics module. Click on this symbol: [**insert image statistics**] and then check Statistics.
+*Make sure you enable the statistics module. Click on this symbol:![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/statistics_option.JPG)
+and then check Statistics.
 This will let you know how many elements are selected (which is very useful for your mesh checks).
 ___
 ### Full Remeshing
@@ -48,7 +49,8 @@ Instead of cleaning your mesh (see below) you can just remesh the entire mesh. T
 Press F3 to bring up the search bar, then type in "voxel remesh". The voxel remesher will create a new mesh based on the volume of your old mesh, ensuring even vertex spacing (which is really useful for FEA analyses).
 
 **Voxel Remesher via Remesh Modifier**
-For a bit more control over the voxel modifier, you can apply it via the **remesh modifier**. This can be found under the modifier tab under the wrench symbol when the object is highlighted in the object hierarchy. [**insert remesh modifier image here**]
+For a bit more control over the voxel modifier, you can apply it via the **remesh modifier**. This can be found under the modifier tab under the wrench symbol when the object is highlighted in the object hierarchy. 
+![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/remesh_modifier.png)  
 
 Note that you need to "apply" any modifiers before exporting this mesh. Applying the modifier means the initial mesh is destroyed and the modifier cannot be adjusted anymore, so make sure the mesh is how you want it before pressing "apply" (under the little downward pointing arrow next to the camera symbold). Before applying the modifier, you can only see the changes in object mode (the mesh in edit mode is only changed once you hit apply). 
 
@@ -58,7 +60,7 @@ There are also other options in the remesh modifer (block, smooth, and sharp). O
 
 ___
 ### Smoothing Sculpting Tool  
-The smoothing sculpting tool (in Sculpt mode) can be really useful if you want to locally smoothe an area (for example if there is jagged geometry). There is even an option to mirror the effects, so if your model is symmetrical about the X axis for example, you can select this: [**insert symbol mirror X axis**] and then all of your smoothing that you perform on one side of the model will also be performed on the other side.
+The smoothing sculpting tool (in Sculpt mode) can be really useful if you want to locally smoothe an area (for example if there is jagged geometry). There is even an option to mirror the effects, so if your model is symmetrical about the X axis for example, you can select this: ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/mirror_X_axis.PNG) and then all of your smoothing that you perform on one side of the model will also be performed on the other side.
 
 ___
 ### Fixing Non-Manifold Meshes
@@ -71,7 +73,7 @@ You can **check for non-manifold elements** in Edit mode under Select > Select b
 - To **remove zero area faces and zero length edges**, use Mesh > Clean up > **Degenerate Dissolve**. 
 
 - If you have any **holes** in your mesh, you can try the automatic cleanup tool under Mesh > Clean up > Fill holes. You can also manually select the surrounding vertices and then fill the gap by pressing F. If you have a big hole bordered by many edges, see section **Manually creating New Faces** below. You can also create a new edge between two selected vertices in the same way. 
- - Depending on the geometry of your gap, you might also want to fill it using "vertex snapping". Select one vertex and drag it over to the vertex you want to connect it to. Select this option [**insert image of snapping tool here**] and then in the dropdown menu select what you want it to snap to, in this case vertices. Make sure to merge the vertices after snapping them using the Merge by Distance Tool. 
+ - Depending on the geometry of your gap, you might also want to fill it using "vertex snapping". Select one vertex and drag it over to the vertex you want to connect it to. Select this option ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/vertex_snapping.JPG) and then in the dropdown menu select what you want it to snap to, in this case vertices. Make sure to merge the vertices after snapping them using the Merge by Distance Tool. 
 
 - If you have **floating bits** outside of your model (maybe from your segmentation) then you can remove these by clicking on a vertex or face in the main model (the part you want to keep), then Select > Select Linked (or use CNTL L), and then Select > Invert (or use CNTRL I). This will select only the floating elements that are not connected to your main model. You can delete them (Delete > **Vertices**).
 
@@ -83,20 +85,20 @@ The vertex smoothing tool makes the vertices and angles more evenly spaced. Sele
 ___
 ### Creating new faces and edges to fill large holes
 
-There may be cases where you deleted some vertices (for example if there was a spiky geometry) and have a big hole that you need to fill, rather than a single triangle. Instead of selecting all of the edges in the perimeter one by one to fill the gap, you can select a single edge and then go to Select > Select Loops > Edge Loops. This will select the perimeter. Then press F to fill the gap. You now will have a big, non triangular gap:
-[**insert filled hole image**]
+There may be cases where you deleted some vertices (for example if there was a spiky geometry) and have a big hole that you need to fill, rather than a single triangle. Instead of selecting all of the edges in the perimeter one by one to fill the gap, you can select a single edge and then go to Select > Select Loops > Edge Loops. This will select the perimeter. Then press F to fill the gap. You now will have a big, non triangular gap:  
+![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/filled_hole.JPG)
 
 You now have two options - 1) you can Triangulate Faces (Face > Triangulate or CNTRL T) or 2) you can manually position edges. 
 
-With option 1), you will likely get sharp triangles:
-[**insert image with sharp triangles**]
+With option 1), you will likely get sharp triangles:  
+![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/fill_hole_triangulate.JPG)
 
-You can fix these sometwhat with the "smooth vertices" tool (see above), but the number of triangles is set, so we still don't get super even triangles:
-[**insert imas with smoothed vertices**
+You can fix these sometwhat with the "smooth vertices" tool (see above), but the number of triangles is set, so we still don't get super even triangles:  
+![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/fill_hole_smoothed.JPG)
 
-It is up to you to decide if these are good enough for your model - often they will be, but sometimes you might want to manually create the faces. To do this, fill the hole as above, then use the knife tool to draw edges (enabling the vertex snap option helps with this). Here you can see how I started to draw in the new edges with the knife tool:
+It is up to you to decide if these are good enough for your model - often they will be, but sometimes you might want to manually create the faces. To do this, fill the hole as above, then use the knife tool to draw edges (enabling the vertex snap option helps with this). Here you can see how I started to draw in the new edges with the knife tool:  
 
-[**insert image manual triangle drawing**]
+![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/filled_hole_manually_knifetool.JPG)
 
 
 *Sometimes the knife tool might not work well - I think this is when the faces are not planar, so first go to Mesh > Clean up > Make Planar Faces. 
@@ -113,7 +115,7 @@ I usually go through the angles one by one to fix them (either with selective ve
 If you decide to fix the angles one by one (instead of using the vertex smoothing on the whole model), then it helps to save the results of the script using **vertex groups**. Vertex groups essentially allow you to save a group of selected vertices (so in this case, once you've fixed on angle, you don't need to rerun the script to select the remaining angles, but can just select the vertex group. The angles you fixed will still be part of the vertex group but it should be easy to see which ones are still problematic (i.e. very sharp triangles). I usually use the vertex group, fix several angles, and after a while re-run the script, and save the selection again as a vertex group to work through the remaining issues.
 
 To create a vertex group, in Edit mode (with the vertices selected by the angle script), go to the vertex properties tab and press the plus icon:
-[**insert vertex group image here**]
+![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/vertex_groups.JPG)
 
 Type in the name for the group (for example "sharp angles"). Then press "assign" to assign the problematic vertices to the vertex group.
 If you want to update the vertex group (after cleaning some sharp angles), in the vertex group go to select, then remove. Now your vertex group is empty and you can rerun the script and assign the remaining sharp angle vertices to that group. 
