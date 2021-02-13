@@ -27,6 +27,7 @@ ___
 - In edit mode, it can be really useful to hide specific faces so you can look at internal geometry etc. To do so, select them with the lasso tool and then press H. Use ALT + H to unhide all.
 - Hold down SHIFT to select multiple elements
 - F3 will pull up the search menu, so you can type in the same of any tool to search for it
+- When you press the Delete key, you get several options. If you want to delete all of that selected geometry, select "Delete Vertices" because if only delete edges or faces the vertices will remain. Deleting only Faces or edges can be useful when you are adjusting the mesh.
 
 
 ### Some useful shortcuts/tools/settings:
@@ -68,7 +69,7 @@ You can check for non-manifold elements in Edit mode under Select > Select by Tr
 
 - If you have any **holes** in your mesh, you can try the automatic cleanup tool under Mesh > Clean up > Fill holes. You can also manually select the surrounding vertices and then fill the gap by pressing F. You can also create a new edge between two selected vertices in the same way. 
 
-- If you have floating 
+- If you have **floating bits** outside of your model (maybe from your segmentation) then you can remove these by clicking on a vertex or face in the main model (the part you want to keep), then Select > Select Linked (or use CNTL L), and then Select > Invert (or use CNTRL I). This will select only the floating elements that are not connected to your main model. You can delete them (Delete > **Vertices**).
 
 
 
@@ -78,7 +79,15 @@ ___
 
 First, make sure your mesh is a tri mesh instead of a quad mesh. To triangulate faces, in Edit mode press A with the select tool active to select all faces, then go to Face > Triangulate Faces
 
-To select angles < 20 or >150, go into object mode, select your object, and then run [this script]() in the Python console. Then go into edit mode to view the angles. You can then manually move vertices by clicking on them and dragging them around with the move tool. You can also select the problematic vertex and some surrounding vertices and apply the selective vertex smoothing tool (see below).
+To select angles < 20 or >150, go into object mode, select your object, and then run [this script](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/Select_Angles_Python_Script.txt) by copying and pasting it into the Python console (in Scripting mode). Then go into edit mode to view the angles. You can then manually move vertices by clicking on them and dragging them around with the move tool. You can also select the problematic vertex and some surrounding vertices and apply the selective vertex smoothing tool (see below). You can also use the vertex smoothing tool on the whole model but ensure that no details are lost. The vertex smoothing tool makes the vertices and angles more evenly spaced. 
+
+If there are many angles you want to fix, then 
+
 ___
 ### Selective Smoothing of Vertices
 
+You can of course also smooth your entire model 
+
+
+___
+### Manually creating new faces
