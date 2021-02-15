@@ -64,7 +64,7 @@ The smoothing sculpting tool (in Sculpt mode) can be really useful if you want t
 
 ___
 ### Fixing Non-Manifold Meshes
-You can **check for non-manifold elements** in Edit mode under Select > Select by Trait > Non-manifold. A little window will pop up so you can check the different types of non-manifold issues. Sometimes it helps to move edges or vertices in the problematic areas around, so see if maybe the issue is duplicate vertices or edges in the same spot. This is where the Statistics view option comes in handy - you can see how many elements are non-manifold. When you are done cleaning your mesh should have 0 non-manifold elements.
+You can **check for non-manifold elements** in Edit mode under Select > Select by Trait > Non-manifold. This can be done for both *ertices* and *edges*. A little window will pop up so you can check the different types of non-manifold issues. Sometimes it helps to move edges or vertices in the problematic areas around, so see if maybe the issue is duplicate vertices or edges in the same spot. This is where the Statistics view option comes in handy - you can see how many elements are non-manifold. When you are done cleaning your mesh should have 0 non-manifold elements.
 
 - To solve **duplicate vertices**, you can use the "merge by distance" tool (Mesh > Clean up > **Merge by Distance** and adjust the values so you only merge those vertices.
 
