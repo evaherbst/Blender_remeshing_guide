@@ -1,5 +1,5 @@
 # Blender Mesh Cleaning Guide 
-
+[![FEZ](https://img.shields.io/badge/FEZ-contributor-brightgreen)](https://github.com/FEZ-Finite-Element-Zurich)
 
 For FEA (finite elemenet analysis) and also other goals such as animating or 3D printing, it is important to have clean meshes.
 This guide offers step by step instructions to clean your meshes in the freeware Blender, which can be downloaded [here](https://www.blender.org/).
