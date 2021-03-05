@@ -41,15 +41,18 @@ ___
 *Make sure you enable the statistics module. Click on this symbol: ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/statistics_option.JPG)
 and then check Statistics.
 This will let you know how many elements are selected (which is very useful for your mesh checks).
+
+*For all of these steps, you need to make sure your object is selected.
 ___
 ### Full Remeshing
 Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the **voxel remesher** to work well.
 
 **Voxel Remesher**
-Press F3 to bring up the search bar, then type in "voxel remesh". The voxel remesher will create a new mesh based on the volume of your old mesh, ensuring even vertex spacing (which is really useful for FEA analyses).
+In object mode, press F3 to bring up the search bar, then type in "voxel remesh". The voxel remesher will create a new mesh based on the volume of your old mesh, ensuring even vertex spacing (which is really useful for FEA analyses). 
 
-**Voxel Remesher via Remesh Modifier**
-For a bit more control over the voxel modifier, you can apply it via the **remesh modifier**. This can be found under the modifier tab under the wrench symbol when the object is highlighted in the object hierarchy. 
+**Voxel Remesher via Remesh Modifier** 
+For a bit more control over the voxel modifier, you can apply it via the **remesh modifier** in object mode. This can be found under the modifier tab under the wrench symbol when the object is highlighted in the object hierarchy. 
+
 ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/remesh_modifier.png)  
 
 Note that you need to "apply" any modifiers before exporting this mesh. Applying the modifier means the initial mesh is destroyed and the modifier cannot be adjusted anymore, so make sure the mesh is how you want it before pressing "apply" (under the little downward pointing arrow next to the camera symbold). Before applying the modifier, you can only see the changes in object mode (the mesh in edit mode is only changed once you hit apply). 
@@ -77,6 +80,7 @@ You can **check for non-manifold elements** in Edit mode under Select > Select b
 
 - If you have **floating bits** outside of your model (maybe from your segmentation) then you can remove these by clicking on a vertex or face in the main model (the part you want to keep), then Select > Select Linked (or use CNTL L), and then Select > Invert (or use CNTRL I). This will select only the floating elements that are not connected to your main model. You can delete them (Delete > **Vertices**).
 
+**3D Print Add-On** This [add-on](https://docs.blender.org/manual/en/latest/addons/mesh/3d_print_toolbox.html?highlight=print) can also be used for mesh inspection and corrections. (thanks Peter Falkingham for pointing this out!)
 ___
 ### Selective Smoothing of Vertices
 
