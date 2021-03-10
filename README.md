@@ -108,6 +108,14 @@ It is up to you to decide if these are good enough for your model - often they w
 
 
 *Sometimes the knife tool might not work well - I think this is when the faces are not planar, so first go to Mesh > Clean up > Make Planar Faces. 
+___
+### Checking for 0 area faces and 0 length edges
+While Blender enables you to fix these, if you want to view them first, the only way I've found is through the 3D print add-on (see above).
+Faces with 0 area and edges with 0 length are usually referred to as "degenerate". You can check for them with the 3D print add-on under check > degenerate (and put 0 for the threshold). The add-on will tell you the number of problematic faces and edges - click on that to select them. To clean them, go to Mesh > Clean up > Degenerate Dissolve. You can also use the add-on to check for really small faces that you might want to remove - to do this, adjust the threshold to the desired amount.
+
+___
+### T-junctions 
+If you triangulate your faces, this should correct any T-junctions.
 
 ___
 ### Checking for Sharp Triangles and Fixing Them
@@ -127,13 +135,6 @@ Type in the name for the group (for example "sharp angles"). Then press "assign"
 If you want to update the vertex group (after cleaning some sharp angles), in the vertex group go to select, then remove. Now your vertex group is empty and you can rerun the script and assign the remaining sharp angle vertices to that group. 
 
 Keep fixing vertices until the script results in 0 selected vertices (this means no angles are > 150 or < 20 degrees). As mentioned above, make sure the Statistics view is enabled so you can see the number of vertices selected by the script.
-___
-### Checking for 0 area faces and 0 length edges
-While Blender enables you to fix these, if you want to view them first, the only way I've found is through the 3D print add-on (see above).
-Faces with 0 area and edges with 0 length are usually referred to as "degenerate". You can check for them with the 3D print add-on under check > degenerate (and put 0 for the threshold). The add-on will tell you the number of problematic faces and edges - click on that to select them. To clean them, go to Mesh > Clean up > Degenerate Dissolve. You can also use the add-on to check for really small faces that you might want to remove - to do this, adjust the threshold to the desired amount.
 
-___
-### T-junctions 
-If you triangulate your faces, this should correct any T-junctions.
 ___
 ### After all your mesh adjustments, run the non-manfold checks again to make sure no errors were introduced during your mesh cleaning.
