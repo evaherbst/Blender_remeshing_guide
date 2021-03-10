@@ -61,6 +61,8 @@ The voxel remesher gives the option of adjusting the voxel size for the new mesh
 
 There are also other options in the remesh modifer (block, smooth, and sharp). Octree depth = 12 sometimes works well but in general the voxel remesh produces much better models. 
 
+**Decimating** 
+Sometimes the resolution of the mesh will be too high for the remesher to work. In this case, you can use a decimate modifier and adjust the slider to get the resolution you want. Then apply the modifier as described above. In some cases decimating and remeshing in Meshlab might be better (try it if Blender crashes a lot due to a very high res mesh).
 ___
 ### Smoothing Sculpting Tool  
 The smoothing sculpting tool (in Sculpt mode) can be really useful if you want to locally smoothe an area (for example if there is jagged geometry). There is even an option to mirror the effects, so if your model is symmetrical about the X axis for example, you can select this: ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/mirror_X_axis.PNG) and then all of your smoothing that you perform on one side of the model will also be performed on the other side.
@@ -80,7 +82,7 @@ You can **check for non-manifold elements** in Edit mode under Select > Select b
 
 - If you have **floating bits** outside of your model (maybe from your segmentation) then you can remove these by clicking on a vertex or face in the main model (the part you want to keep), then Select > Select Linked (or use CNTL L), and then Select > Invert (or use CNTRL I). This will select only the floating elements that are not connected to your main model. You can delete them (Delete > **Vertices**).
 
-**3D Print Add-On** This [add-on](https://docs.blender.org/manual/en/latest/addons/mesh/3d_print_toolbox.html?highlight=print) can also be used for mesh inspection and corrections. (thanks Peter Falkingham for pointing this out!). It has an automatic "make manifold" option and can run a lot of checks - however, I prefer to see the problematic areas myself and fix them as in the steps below, to ensure no structures are getting smoothed over.
+**3D Print Add-On** This [add-on](https://docs.blender.org/manual/en/latest/addons/mesh/3d_print_toolbox.html?highlight=print) can also be used for mesh inspection and corrections. (thanks Peter Falkingham for pointing this out!). It has an automatic "make manifold" option and can run a lot of checks - however, I prefer to see the problematic areas myself and fix them as in the steps below, to ensure no structures are getting smoothed over. It is super quick and useful though. It also helps to check for 0 area faces and 0 length edges - see below.
 ___
 ### Selective Smoothing of Vertices
 
@@ -125,5 +127,13 @@ Type in the name for the group (for example "sharp angles"). Then press "assign"
 If you want to update the vertex group (after cleaning some sharp angles), in the vertex group go to select, then remove. Now your vertex group is empty and you can rerun the script and assign the remaining sharp angle vertices to that group. 
 
 Keep fixing vertices until the script results in 0 selected vertices (this means no angles are > 150 or < 20 degrees). As mentioned above, make sure the Statistics view is enabled so you can see the number of vertices selected by the script.
+___
+### Checking for 0 area faces and 0 length edges
+While Blender enables you to fix these, if you want to view them first, the only way I've found is through the 3D print add-on (see above).
+Faces with 0 area and edges with 0 length are usually referred to as "degenerate". You can check for them with the 3D print add-on under check > degenerate (and put 0 for the threshold). The add-on will tell you the number of problematic faces and edges - click on that to select them. To clean them, go to Mesh > Clean up > Degenerate Dissolve. You can also use the add-on to check for really small faces that you might want to remove - to do this, adjust the threshold to the desired amount.
+
+___
+### T-junctions 
+If you triangulate your faces, this should correct any T-junctions.
 ___
 ### After all your mesh adjustments, run the non-manfold checks again to make sure no errors were introduced during your mesh cleaning.
