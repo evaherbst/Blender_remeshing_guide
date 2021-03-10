@@ -80,7 +80,7 @@ You can **check for non-manifold elements** in Edit mode under Select > Select b
 
 - If you have **floating bits** outside of your model (maybe from your segmentation) then you can remove these by clicking on a vertex or face in the main model (the part you want to keep), then Select > Select Linked (or use CNTL L), and then Select > Invert (or use CNTRL I). This will select only the floating elements that are not connected to your main model. You can delete them (Delete > **Vertices**).
 
-**3D Print Add-On** This [add-on](https://docs.blender.org/manual/en/latest/addons/mesh/3d_print_toolbox.html?highlight=print) can also be used for mesh inspection and corrections. (thanks Peter Falkingham for pointing this out!)
+**3D Print Add-On** This [add-on](https://docs.blender.org/manual/en/latest/addons/mesh/3d_print_toolbox.html?highlight=print) can also be used for mesh inspection and corrections. (thanks Peter Falkingham for pointing this out!). It has an automatic "make manifold" option and can run a lot of checks - however, I prefer to see the problematic areas myself and fix them as in the steps below, to ensure no structures are getting smoothed over.
 ___
 ### Selective Smoothing of Vertices
 
