@@ -138,3 +138,8 @@ Keep fixing vertices until the script results in 0 selected vertices (this means
 
 ___
 ### After all your mesh adjustments, run the non-manfold checks again to make sure no errors were introduced during your mesh cleaning.
+
+___
+### Note about exports!
+
+You will probably be exporting your model as an .stl or .obj. Note that during export you need to check which axes are set to "up" and "forward"! Make sure the axes match your scene (or, alternatively, if you want to change which axis is up and which is forward your FEA model (or whatever other program you're exporting to), you can set this in the export steps).
