@@ -8,6 +8,11 @@ import math
 
 obj = bpy.context.object
 
+#deselects any previously selected vertices in Edit mode before running script
+bpy.ops.object.mode_set(mode="EDIT") #Activating Edit mode
+bpy.ops.mesh.select_all(action = 'DESELECT') #Deselecting all
+bpy.ops.object.mode_set(mode="OBJECT") #Going back to Object mode
+
 def angle_between_edges(obj,poly,e1,e2):
     common_vert = set(e1).intersection(set(e2))
     if common_vert==set():
