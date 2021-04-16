@@ -45,10 +45,11 @@ This will let you know how many elements are selected (which is very useful for 
 *For all of these steps, you need to make sure your object is selected.
 ___
 ### Full Remeshing
-Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the **voxel remesher** to work well.
+Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the **voxel remesher** to work well. However, if your mesh has big holes the remesher doesn't work well, so fix those first.
 
 **Voxel Remesher**
 In object mode, press F3 to bring up the search bar, then type in "voxel remesh". The voxel remesher will create a new mesh based on the volume of your old mesh, ensuring even vertex spacing (which is really useful for FEA analyses). 
+*If you want more control over the voxel remesher, select your object, go to sculpt mode, then click the tool symbol on the right hand side of the screen. Scroll down to "remesh" (and make sure dyntopo is not checked). Here you can choose voxel size etc, and can even use the eye dropper tool to choose another object as a reference for voxel size. Note that the resulting mesh will be a quad mesh, so if you use a triangulated mesh as a reference, you won't necessarily end up with the same sized triangles. In that case it's sometimes easiest to just adjust the voxel size values instead of using a reference mesh.*
 
 **Voxel Remesher via Remesh Modifier** 
 For a bit more control over the voxel modifier, you can apply it via the **remesh modifier** in object mode. This can be found under the modifier tab under the wrench symbol when the object is highlighted in the object hierarchy. 
@@ -69,7 +70,7 @@ The smoothing sculpting tool (in Sculpt mode) can be really useful if you want t
 
 ___
 ### Fixing Non-Manifold Meshes
-You can **check for non-manifold elements** in Edit mode under Select > Select by Trait > Non-manifold. This can be done for both *ertices* and *edges*. A little window will pop up so you can check the different types of non-manifold issues. Sometimes it helps to move edges or vertices in the problematic areas around, so see if maybe the issue is duplicate vertices or edges in the same spot. This is where the Statistics view option comes in handy - you can see how many elements are non-manifold. When you are done cleaning your mesh should have 0 non-manifold elements.
+You can **check for non-manifold elements** in Edit mode under Select > Select by Trait > Non-manifold. This can be done for both *vertices* and *edges*. A little window will pop up so you can check the different types of non-manifold issues. Sometimes it helps to move edges or vertices in the problematic areas around, so see if maybe the issue is duplicate vertices or edges in the same spot. This is where the Statistics view option comes in handy - you can see how many elements are non-manifold. When you are done cleaning your mesh should have 0 non-manifold elements.
 
 - To solve **duplicate vertices**, you can use the "merge by distance" tool (Mesh > Clean up > **Merge by Distance** and adjust the values so you only merge those vertices.
 
@@ -81,6 +82,8 @@ You can **check for non-manifold elements** in Edit mode under Select > Select b
  - Depending on the geometry of your gap, you might also want to fill it using "vertex snapping". Select one vertex and drag it over to the vertex you want to connect it to. Select this option ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/vertex_snapping.JPG) and then in the dropdown menu select what you want it to snap to, in this case vertices. Make sure to merge the vertices after snapping them using the Merge by Distance Tool. 
 
 - If you have **floating bits** outside of your model (maybe from your segmentation) then you can remove these by clicking on a vertex or face in the main model (the part you want to keep), then Select > Select Linked (or use CNTL L), and then Select > Invert (or use CNTRL I). This will select only the floating elements that are not connected to your main model. You can delete them (Delete > **Vertices**).
+
+- If you have issues with **non-contiguous** areas (check which types of non-manifold issues are present in the select non-manifold window), this means the adjacent faces have oppostite normals. To fix this, select the surrounding faces (or the entire mesh) and go to Mesh > Normals > Recalculate Outside. 
 
 **3D Print Add-On** This [add-on](https://docs.blender.org/manual/en/latest/addons/mesh/3d_print_toolbox.html?highlight=print) can also be used for mesh inspection and corrections. (thanks Peter Falkingham for pointing this out!). It has an automatic "make manifold" option and can run a lot of checks - however, I prefer to see the problematic areas myself and fix them as in the steps below, to ensure no structures are getting smoothed over. It is super quick and useful though. It also helps to check for 0 area faces and 0 length edges - see below.
 ___
@@ -135,6 +138,10 @@ Type in the name for the group (for example "sharp angles"). Then press "assign"
 If you want to update the vertex group (after cleaning some sharp angles), in the vertex group go to select, then remove. Now your vertex group is empty and you can rerun the script and assign the remaining sharp angle vertices to that group. 
 
 Keep fixing vertices until the script results in 0 selected vertices (this means no angles are > 150 or < 20 degrees). As mentioned above, make sure the Statistics view is enabled so you can see the number of vertices selected by the script.
+
+___
+### Merging two objects
+I found that the best way to merge two objects (for example if you reassmbled two bone fragments) is to use a Boolean difference modifier (under modifiers), and then remesh.
 
 ___
 ### After all your mesh adjustments, run the non-manfold checks again to make sure no errors were introduced during your mesh cleaning.
