@@ -141,7 +141,7 @@ Keep fixing vertices until the script results in 0 selected vertices (this means
 
 ___
 ### Merging two objects
-To merge objects (for example if you reassembled two bone fragments) you can join them but a better way is to use a Boolean union modifier (under modifiers), and then remesh. The Boolean union essentially joins the two objects but removes internal geometry - however, if your meshes don't have good overlap you usually still have to clean up the seam area where the two meshes are joined.
+To merge objects (for example if you reassembled two bone fragments) you can join them or use a Boolean union modifier (under modifiers), and then remesh. The Boolean union essentially joins the two objects but removes internal geometry - however, if your meshes don't have good overlap you usually still have to clean up the seam area where the two meshes are joined *and often the internal geometry is not removed properly, so be careful and check!*
 
 ___
 ### After all your mesh adjustments, run the non-manfold checks again to make sure no errors were introduced during your mesh cleaning.
