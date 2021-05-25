@@ -45,7 +45,7 @@ This will let you know how many elements are selected (which is very useful for 
 *For all of these steps, you need to make sure your object is selected.
 ___
 ### Full Remeshing
-Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the **voxel remesher** to work well. However, if your mesh has big holes the remesher doesn't work well, so fix those first.
+Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the **voxel remesher** to work well. However, if your mesh has big holes the remesher doesn't work well, so fix those first. Small holes can be ok (for example if you are trying to merge two objects and there is a small gap between them), but in those cases be sure to check that area of the mesh afterwards because it may need some adjustments such as smoothing.
 
 **Voxel Remesher**
 In object mode, press F3 to bring up the search bar, then type in "voxel remesh". The voxel remesher will create a new mesh based on the volume of your old mesh, ensuring even vertex spacing (which is really useful for FEA analyses). 
