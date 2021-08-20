@@ -46,6 +46,10 @@ This will let you know how many elements are selected (which is very useful for 
 ___
 ### Full Remeshing
 Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the **voxel remesher** to work well. However, if your mesh has big holes the remesher doesn't work well, so fix those first. Small holes can be ok (for example if you are trying to merge two objects and there is a small gap between them), but in those cases be sure to check that area of the mesh afterwards because it may need some adjustments such as smoothing.
+The voxel remesher is especially useful for combining multiple meshes into one manifold object.
+**UPDATE:** I did some test comparing the results of remeshing with desired voxel size versus remeshing at higher resolution and then decimating. Remeshing to desired voxel size sometimes obscures features. Remeshing at higher resolution (e.g. smaller voxel size than you want in the end) followed by decimating is a better way to preserve these features. However, the decimated meshes usually have a less even face distribution (e.g. larger face size differences and sharp triangles). These can be fixed manually or, if need be, other programs can be used (Avizo works well to remesh without losing features and achieving even triangles, but unfortunately is a pay for use license. See here on some free alteranatives: https://www.google.com/url?q=https://blenderartists.org/t/autoremesher-open-source-auto-retopology-tool/1245131&sa=D&source=editors&ust=1629503795455000&usg=AOvVaw3CqFxIKz5NWERgr1egY7PB
+I usually now do use voxel remesh to combine meshes in Blender, then fix any issues with any remaining intersections or non-manifold regions (if any remain after voxel remesh), then use another software simply to get a more even triangle distribution when downsampling.
+I also checked doing all remeshing in Avizo but this did not work well because Avizo will not merge the different mesh components into one non-manifold mesh.
 
 **Voxel Remesher**
 In object mode, press F3 to bring up the search bar, then type in "voxel remesh". The voxel remesher will create a new mesh based on the volume of your old mesh, ensuring even vertex spacing (which is really useful for FEA analyses). 
@@ -120,6 +124,10 @@ ___
 ### T-junctions 
 If you triangulate your faces, this should correct any T-junctions.
 
+___
+### Checking for self intersections
+The mesh analysis tool is really useful to highlight regions where there are self-intersections.
+https://docs.blender.org/manual/en/latest/modeling/meshes/mesh_analysis.html
 ___
 ### Checking for Sharp Triangles and Fixing Them
 *Thank you to Niccolo Fioritti for helping write the angle selector code*
