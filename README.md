@@ -9,6 +9,7 @@ This guide offers step by step instructions to clean your meshes in the freeware
 **Aims of Mesh Cleaning**:
 By cleaning a mesh, we want to make it watertight (e.g. no holes) and **manifold**. Manifold meshes mean that there are no problems such as faces with 0 area, edges connecting more than 2 faces, several vertices occupying the same position, etc. For finite element analysis, we also want to have the elements of the mesh be fairly uniform in size, and to avoid sharp triangles (angles of < 20 degrees and > 150 degrees). This practical guide will teach you how to create a mesh meeting all of these conditions.
 
+A [Youtube tutorial](https://youtu.be/XzAUn76NLXM) is also available.
 ___
 *Before we get into the mesh cleaning, here are some useful Blender shortcuts and tips:*
 
