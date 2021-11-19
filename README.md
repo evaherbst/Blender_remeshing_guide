@@ -90,7 +90,7 @@ You can **check for non-manifold elements** in Edit mode under Select > Select b
 
 - If you have issues with **non-contiguous** areas (check which types of non-manifold issues are present in the select non-manifold window), this means the adjacent faces have oppostite normals. To fix this, select the surrounding faces (or the entire mesh) and go to Mesh > Normals > Recalculate Outside. 
 
-**3D Print Add-On** This [add-on](https://docs.blender.org/manual/en/latest/addons/mesh/3d_print_toolbox.html?highlight=print) can also be used for mesh inspection and corrections. (thanks Peter Falkingham for pointing this out!). It has an automatic "make manifold" option and can run a lot of checks - however, I prefer to see the problematic areas myself and fix them as in the steps below, to ensure no structures are getting smoothed over. It is super quick and useful though. It also helps to check for 0 area faces and 0 length edges - see below.
+**3D Print Add-On** This [add-on](https://docs.blender.org/manual/en/latest/addons/mesh/3d_print_toolbox.html?highlight=print) can also be used for mesh inspection and corrections. (thanks Peter Falkingham for pointing this out!). It has an automatic "make manifold" option and can run a lot of checks - however, I prefer to see the problematic areas myself and fix them as in the steps below, to ensure no structures are getting smoothed over. It is super quick and useful though. It also helps to check for 0 area faces and 0 length edges and intersecting faces- see below.
 ___
 ### Selective Smoothing of Vertices
 
@@ -121,6 +121,9 @@ ___
 While Blender enables you to fix these, if you want to view them first, the only way I've found is through the 3D print add-on (see above).
 Faces with 0 area and edges with 0 length are usually referred to as "degenerate". You can check for them with the 3D print add-on under check > degenerate (and put 0 for the threshold). The add-on will tell you the number of problematic faces and edges - click on that to select them. To clean them, go to Mesh > Clean up > Degenerate Dissolve. You can also use the add-on to check for really small faces that you might want to remove - to do this, adjust the threshold to the desired amount.
 
+___
+### Intersecting faces
+Use the 3D print add-on to identify intersecting faces, then fix manually.
 ___
 ### T-junctions 
 If you triangulate your faces, this should correct any T-junctions.
