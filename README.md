@@ -114,6 +114,8 @@ It is up to you to decide if these are good enough for your model - often they w
 
 ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/filled_hole_manually_knifetool.JPG)
 
+To create new faces, also check out Blender's F2 plug-in (which comes with Blender).
+
 
 *Sometimes the knife tool might not work well - I think this is when the faces are not planar, so first go to Mesh > Clean up > Make Planar Faces. 
 ___
