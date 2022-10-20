@@ -10,6 +10,8 @@ This guide offers step by step instructions to clean your meshes in the freeware
 By cleaning a mesh, we want to make it watertight (e.g. no holes) and **manifold**. Manifold meshes mean that there are no problems such as faces with 0 area, edges connecting more than 2 faces, several vertices occupying the same position, etc. For finite element analysis, we also want to have the elements of the mesh be fairly uniform in size, and to avoid sharp triangles (angles of < 20 degrees and > 150 degrees). This practical guide will teach you how to create a mesh meeting all of these conditions.
 
 A [Youtube tutorial](https://youtu.be/XzAUn76NLXM) is also available.
+
+Please also see our paper [paper](https://doi.org/10.1098/rsos.220519) on bone retrodeformation. Sculpting tools can also be used to remesh areas (eg changing resolution) - turn on dynamic topology to do this.
 ___
 *Before we get into the mesh cleaning, here are some useful Blender shortcuts and tips:*
 
@@ -158,7 +160,7 @@ ___
 To merge objects (for example if you reassembled two bone fragments) you can join them or use a Boolean union modifier (under modifiers), and then remesh. The Boolean union essentially joins the two objects but removes internal geometry - however, if your meshes don't have good overlap you usually still have to clean up the seam area where the two meshes are joined *and often the internal geometry is not removed properly, so be careful and check!*
 
 ___
-### After all your mesh adjustments, run the non-manfold checks again to make sure no errors were introduced during your mesh cleaning.
+### After all your mesh adjustments, run the non-manifold checks again to make sure no errors were introduced during your mesh cleaning.
 
 ___
 ### Note about exports!
