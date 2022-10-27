@@ -9,7 +9,7 @@ This guide offers step by step instructions to clean your meshes in the freeware
 **Aims of Mesh Cleaning**:
 By cleaning a mesh, we want to make it watertight (e.g. no holes) and **manifold**. Manifold meshes mean that there are no problems such as faces with 0 area, edges connecting more than 2 faces, several vertices occupying the same position, etc. For finite element analysis, we also want to have the elements of the mesh be fairly uniform in size, and to avoid sharp triangles (angles of < 20 degrees and > 150 degrees). This practical guide will teach you how to create a mesh meeting all of these conditions.
 
-A [Youtube tutorial](https://youtu.be/XzAUn76NLXM) is also available.
+A [Youtube tutorial](https://youtu.be/XzAUn76NLXM) is also available (note that the more recent methods using sculpt tools are not included here)
 
 Please also see our paper [paper](https://doi.org/10.1098/rsos.220519) on bone retrodeformation. Sculpting tools can also be used to remesh areas (eg changing resolution) - turn on dynamic topology to do this.
 ___
@@ -50,8 +50,10 @@ ___
 ### Full Remeshing 
 Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. If your mesh has big holes the remesher doesn't work well, so fix those first. Small holes can be ok (for example if you are trying to merge two objects and there is a small gap between them), but in those cases be sure to check that area of the mesh afterwards because it may need some adjustments such as smoothing.
 The voxel remesher is especially useful for combining multiple meshes into one manifold object.
+
 **UPDATE:** I did some test comparing the results of remeshing with desired voxel size versus remeshing at higher resolution and then decimating. Remeshing to desired voxel size sometimes obscures features. Remeshing at higher resolution (e.g. smaller voxel size than you want in the end) followed by decimating is a better way to preserve these features. However, the decimated meshes usually have a less even face distribution (e.g. larger face size differences and sharp triangles). For an even face distribution, see tips on the remeshing tools within the Sculpt Tool below. 
-**UPDATE 2:** The remeshing options within the Sculpt Tool work even better especially if you want to create a triangular mesh.
+
+**UPDATE 2:** The remeshing options within the Sculpt Tool (see below) work even better especially if you want to create a triangular mesh.
 
 **Voxel Remesher** (creates quad mesh)
 In object mode, press F3 to bring up the search bar, then type in "voxel remesh". The voxel remesher will create a new mesh based on the volume of your old mesh, ensuring even vertex spacing (which is really useful for FEA analyses). 
@@ -74,6 +76,7 @@ Sometimes the resolution of the mesh will be too high for the remesher to work. 
 ___
 ### Remeshing via Sculpting Tools
 *Thanks to ![Matt Humpage](https://www.northernroguestudios.com/) for these tips!*
+
 Remeshing via sculpting tools can help clean up meshes both locally (by enabling Dynamic Topology and setting the sculpt tool strength to 0, then going over that area) as well as globally (remeshing via Flood Fill, which can be accessed under Dynamic Topology>Constant Detail). The latter gives a mesh with evenly sized triangular faces.
 
 ___
@@ -82,6 +85,8 @@ The smoothing sculpting tool (in Sculpt mode) can be really useful if you want t
 
 ___
 ### Fixing Non-Manifold Meshes
+*Also see Sculpt Tool Dynamic Topology methods above, which can help clean the mesh*
+
 You can **check for non-manifold elements** in Edit mode under Select > Select by Trait > Non-manifold. This can be done for both *vertices* and *edges*. A little window will pop up so you can check the different types of non-manifold issues. Sometimes it helps to move edges or vertices in the problematic areas around, so see if maybe the issue is duplicate vertices or edges in the same spot. This is where the Statistics view option comes in handy - you can see how many elements are non-manifold. When you are done cleaning your mesh should have 0 non-manifold elements.
 
 - To solve **duplicate vertices**, you can use the "merge by distance" tool (Mesh > Clean up > **Merge by Distance** and adjust the values so you only merge those vertices.
