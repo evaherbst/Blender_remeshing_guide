@@ -47,18 +47,17 @@ This will let you know how many elements are selected (which is very useful for 
 
 *For all of these steps, you need to make sure your object is selected.
 ___
-### Full Remeshing
-Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. In general I have found the **voxel remesher** to work well. However, if your mesh has big holes the remesher doesn't work well, so fix those first. Small holes can be ok (for example if you are trying to merge two objects and there is a small gap between them), but in those cases be sure to check that area of the mesh afterwards because it may need some adjustments such as smoothing.
+### Full Remeshing 
+Instead of cleaning your mesh (see below) you can just remesh the entire mesh. This is useful but might also cause loss of thin structures, geometry etc. Therefore, if you choose this option, carefully check your model to ensure no features have been smoothed over. If your mesh has big holes the remesher doesn't work well, so fix those first. Small holes can be ok (for example if you are trying to merge two objects and there is a small gap between them), but in those cases be sure to check that area of the mesh afterwards because it may need some adjustments such as smoothing.
 The voxel remesher is especially useful for combining multiple meshes into one manifold object.
-**UPDATE:** I did some test comparing the results of remeshing with desired voxel size versus remeshing at higher resolution and then decimating. Remeshing to desired voxel size sometimes obscures features. Remeshing at higher resolution (e.g. smaller voxel size than you want in the end) followed by decimating is a better way to preserve these features. However, the decimated meshes usually have a less even face distribution (e.g. larger face size differences and sharp triangles). These can be fixed manually or, if need be, other programs can be used (Avizo works well to remesh without losing features and achieving even triangles, but unfortunately is a pay for use license. See here on some free alternatives: https://www.google.com/url?q=https://blenderartists.org/t/autoremesher-open-source-auto-retopology-tool/1245131&sa=D&source=editors&ust=1629503795455000&usg=AOvVaw3CqFxIKz5NWERgr1egY7PB
-I usually now do use voxel remesh to combine meshes in Blender, then fix any issues with any remaining intersections or non-manifold regions (if any remain after voxel remesh), then use another software simply to get a more even triangle distribution when downsampling.
-I also checked doing all remeshing in Avizo but this did not work well because Avizo will not merge the different mesh components into one non-manifold mesh.
+**UPDATE:** I did some test comparing the results of remeshing with desired voxel size versus remeshing at higher resolution and then decimating. Remeshing to desired voxel size sometimes obscures features. Remeshing at higher resolution (e.g. smaller voxel size than you want in the end) followed by decimating is a better way to preserve these features. However, the decimated meshes usually have a less even face distribution (e.g. larger face size differences and sharp triangles). For an even face distribution, see tips on the remeshing tools within the Sculpt Tool below. 
+**UPDATE 2:** The remeshing options within the Sculpt Tool work even better especially if you want to create a triangular mesh.
 
-**Voxel Remesher**
+**Voxel Remesher** (creates quad mesh)
 In object mode, press F3 to bring up the search bar, then type in "voxel remesh". The voxel remesher will create a new mesh based on the volume of your old mesh, ensuring even vertex spacing (which is really useful for FEA analyses). 
 *If you want more control over the voxel remesher, select your object, go to sculpt mode, then click the tool symbol on the right hand side of the screen. Scroll down to "remesh" (and make sure dyntopo is not checked). Here you can choose voxel size etc, and can even use the eye dropper tool to choose another object as a reference for voxel size. Note that the resulting mesh will be a quad mesh, so if you use a triangulated mesh as a reference, you won't necessarily end up with the same sized triangles. In that case it's sometimes easiest to just adjust the voxel size values instead of using a reference mesh.*
 
-**Voxel Remesher via Remesh Modifier** 
+**Voxel Remesher via Remesh Modifier** (creates quad mesh)
 For a bit more control over the voxel modifier, you can apply it via the **remesh modifier** in object mode. This can be found under the modifier tab under the wrench symbol when the object is highlighted in the object hierarchy. 
 
 ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/remesh_modifier.png)  
@@ -71,6 +70,12 @@ There are also other options in the remesh modifer (block, smooth, and sharp). O
 
 **Decimating** 
 Sometimes the resolution of the mesh will be too high for the remesher to work. In this case, you can use a decimate modifier and adjust the slider to get the resolution you want. Then apply the modifier as described above. In some cases decimating and remeshing in Meshlab might be better (try it if Blender crashes a lot due to a very high res mesh).
+
+___
+### Remeshing via Sculpting Tools
+*Thanks to ![Matt Humpage](https://www.northernroguestudios.com/) for these tips!*
+Remeshing via sculpting tools can help clean up meshes both locally (by enabling Dynamic Topology and setting the sculpt tool strength to 0, then going over that area) as well as globally (remeshing via Flood Fill, which can be accessed under Dynamic Topology>Constant Detail). The latter gives a mesh with evenly sized triangular faces.
+
 ___
 ### Smoothing Sculpting Tool  
 The smoothing sculpting tool (in Sculpt mode) can be really useful if you want to locally smoothe an area (for example if there is jagged geometry). There is even an option to mirror the effects, so if your model is symmetrical about the X axis for example, you can select this: ![alt text](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/images%20for%20workflow/mirror_X_axis.PNG) and then all of your smoothing that you perform on one side of the model will also be performed on the other side.
