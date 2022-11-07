@@ -152,6 +152,8 @@ ___
 
 First, make sure your mesh is a tri mesh instead of a quad mesh. To triangulate faces, in Edit mode press A with the select tool active to select all faces, then go to Face > Triangulate Faces
 
+**UPDATE**: ![Matt Humpage](https://www.northernroguestudios.com/) kindly implemented my checking sharp angles script as a Blender Plugin, which is much more convenient than running the script manually as described below. The plugin can be installed by simply downloading the file "CheckSharpAngles1.py". Then follow the same steps below (but skip the running the script part, instead press the button in the add-on in object mode).
+
 To select angles < 20 or >150, go into object mode, select your object, and then run [this script](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/Select_Angles_Python_Script.txt) by copying and pasting it into the Python console (in Scripting mode). Then go into edit mode to view the angles. You can then manually move vertices by clicking on them and dragging them around with the move tool. You can also select the problematic vertex and some surrounding vertices and apply the selective vertex smoothing tool (see below). You can also automatically expand the selection of sharp triangles by 1 vertex in each direction and then smooth. You can also use the vertex smoothing tool on the whole model but ensure that no details are lost (see below). Merge by distance can also be useful, although be careful that you do not merge vertices that you didn't intend to merge.
 
 I usually go through the angles one by one to fix them (either with selective vertex smoothing or manually). 
