@@ -152,7 +152,7 @@ ___
 
 First, make sure your mesh is a tri mesh instead of a quad mesh. To triangulate faces, in Edit mode press A with the select tool active to select all faces, then go to Face > Triangulate Faces
 
-**UPDATE**: ![Matt Humpage](https://www.northernroguestudios.com/) kindly implemented my checking sharp angles script as a Blender Plugin, which is much more convenient than running the script manually as described below. The plugin can be installed by simply downloading the file "CheckSharpAngles1.py". Then follow the same steps below (but skip the running the script part, instead press the button in the add-on in object mode).
+**UPDATE**: ![Matt Humpage](https://www.northernroguestudios.com/) kindly implemented my checking sharp angles script as a Blender Plugin, which is much more convenient than running the script manually as described below. The plugin can be installed by simply downloading the file "CheckSharpAngles1.py". Then follow the same steps below (but skip the running the script part, instead press the button in the add-on in object mode). The Add-on automatically creates the vertex group described below.
 
 To select angles < 20 or >150, go into object mode, select your object, and then run [this script](https://github.com/evaherbst/Blender_remeshing_guide/blob/main/Select_Angles_Python_Script.txt) by copying and pasting it into the Python console (in Scripting mode). Then go into edit mode to view the angles. You can then manually move vertices by clicking on them and dragging them around with the move tool. You can also select the problematic vertex and some surrounding vertices and apply the selective vertex smoothing tool (see below). You can also automatically expand the selection of sharp triangles by 1 vertex in each direction and then smooth. You can also use the vertex smoothing tool on the whole model but ensure that no details are lost (see below). Merge by distance can also be useful, although be careful that you do not merge vertices that you didn't intend to merge.
 
@@ -166,6 +166,8 @@ Type in the name for the group (for example "sharp angles"). Then press "assign"
 If you want to update the vertex group (after cleaning some sharp angles), in the vertex group go to select, then remove. Now your vertex group is empty and you can rerun the script and assign the remaining sharp angle vertices to that group. 
 
 Keep fixing vertices until the script results in 0 selected vertices (this means no angles are > 150 or < 20 degrees). As mentioned above, make sure the Statistics view is enabled so you can see the number of vertices selected by the script.
+
+**note**: if you get an error that says edges of size 0 are causing a problem, use the "merge by distance" feature to clean these up, then rerun the script again.
 
 ___
 ### Merging two objects
