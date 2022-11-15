@@ -103,6 +103,12 @@ You can **check for non-manifold elements** in Edit mode under Select > Select b
 - If you have issues with **non-contiguous** areas (check which types of non-manifold issues are present in the select non-manifold window), this means the adjacent faces have oppostite normals. To fix this, select the surrounding faces (or the entire mesh) and go to Mesh > Normals > Recalculate Outside. 
 
 **3D Print Add-On** This [add-on](https://docs.blender.org/manual/en/latest/addons/mesh/3d_print_toolbox.html?highlight=print) can also be used for mesh inspection and corrections. (thanks Peter Falkingham for pointing this out!). It has an automatic "make manifold" option and can run a lot of checks - however, I prefer to see the problematic areas myself and fix them as in the steps below, to ensure no structures are getting smoothed over. It is super quick and useful though. It also helps to check for 0 area faces and 0 length edges and intersecting faces- see below.
+
+___
+### Checking for Self-Intersections
+
+Use the 3D Printing Blender Add-on, click "intersections", fix these.
+
 ___
 ### Selective Smoothing of Vertices
 
